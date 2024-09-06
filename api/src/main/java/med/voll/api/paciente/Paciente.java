@@ -68,4 +68,20 @@ public class Paciente {
     public void inativar() {
         this.ativo = false;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
 }
