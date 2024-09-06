@@ -33,4 +33,15 @@ public class Paciente {
         this.endereco = new Endereco(dados.endereco());
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
 }
