@@ -27,8 +27,6 @@ public class SecurityConfigurations {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/login").permitAll();
-                    req.requestMatchers("/medicos").hasRole("ADMIN");
-                    req.requestMatchers("/pacientes").hasRole("ADMIN");
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class).build();
