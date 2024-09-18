@@ -10,6 +10,6 @@ public record DadosAtualizarPaciente(
         String nome,
         String email,
         String telefone,
-        @Valid DadosEndereco endereco
+        DadosEndereco endereco
 ) {
 }

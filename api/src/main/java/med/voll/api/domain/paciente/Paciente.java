@@ -7,22 +7,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.endereco.Endereco;
 
+@Table(name = "pacientes")
+@Entity(name = "Paciente")
 @Getter
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Paciente")
-@Table(name = "pacientes")
+@EqualsAndHashCode(of = "id")
 public class Paciente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String email;
-    private String cpf;
+
     private String telefone;
+
+    private String cpf;
 
     @Embedded
     private Endereco endereco;
@@ -30,24 +30,12 @@ public class Paciente {
     private Boolean ativo;
 
     public Paciente(DadosCadastroPaciente dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
-        this.ativo = true;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCpf() {
-        return cpf;
     }
 
     public void atualizarInformacoes(DadosAtualizarPaciente dados) {
@@ -57,31 +45,13 @@ public class Paciente {
         if (dados.telefone() != null) {
             this.telefone = dados.telefone();
         }
-        if (dados.email() != null) {
-            this.telefone = dados.email();
-        }
         if (dados.endereco() != null) {
             this.endereco.atualizarInformacoes(dados.endereco());
         }
+
     }
 
-    public void inativar() {
+    public void excluir() {
         this.ativo = false;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public Boolean getAtivo() {
-        return ativo;
     }
 }
